@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Startup List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f3ff;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .startup-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .startup-button {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .startup-button:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .startup-button.active {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .description-box {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            min-height: 60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .description-box.visible {
+            opacity: 1;
+        }
+
+        .no-description {
+            font-style: italic;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MSME1</h1>
+        <div class="description-box" id="descriptionBox">Click a startup to see its description</div>
+        <div class="startup-list" id="startupList"></div>
+    </div>
+
+    <script>
+        const startups = [
+            {title: 'Carrtel Thrift - 30', description: 'Selling Street wear , Vintage and High end stuff.'}, {title: 'GenZ Streetwear - 31', description: 'Trendy Gen Z streetwear for bold expression'}, {title: 'Shree Brahmani Mobile - 32', description: 'Phone cases & accessories for every device.'}, {title: 'Surf School - 33', description: 'Surfing, SUP & kayaking lessons in Malpe'}, {title: 'Ame Organic - 34', description: 'Holistic wellness for skin, gut, and mind'}, {title: 'Sunita, Bangles , jwellery & jhumka - 35', description: 'Exquisite bangles, jewelry & jhumkas'}, {title: 'Roopa Creations - 36', description: 'Artworks crafted with pressed leaves & flowers'}, {title: 'Frame It - 37', description: 'Custom frames, gifts & personalized items'}, {title: 'Shivani Rexin Bags - 38', description: 'Durable & stylish Rexin bags for all needs'}, {title: 'Azeem Oud - 39', description: 'Golden, intense, and timeless Oud fragrance'}, {title: 'Joos Botal - 40', description: 'Fresh bottled juices, 24/7 accessibility'}
+        ];
+
+        const startupList = document.getElementById("startupList");
+        const descriptionBox = document.getElementById("descriptionBox");
+        let activeButton = null;
+
+        // Show initial description box
+        descriptionBox.classList.add("visible");
+
+        startups.forEach(startup => {
+            const button = document.createElement("button");
+            button.className = "startup-button";
+            button.textContent = startup.title;
+            
+            button.addEventListener("click", () => {
+                if (activeButton) {
+                    activeButton.classList.remove("active");
+                }
+                button.classList.add("active");
+                activeButton = button;
+                
+                // Fade out
+                descriptionBox.classList.remove("visible");
+                
+                // Update content and fade in after a short delay
+                setTimeout(() => {
+                    descriptionBox.textContent = startup.description;
+                    if (startup.description === "Information not available") {
+                        descriptionBox.classList.add("no-description");
+                    } else {
+                        descriptionBox.classList.remove("no-description");
+                    }
+                    descriptionBox.classList.add("visible");
+                }, 300);
+            });
+            
+            startupList.appendChild(button);
+        });
+    </script>
+</body>
+</html>
