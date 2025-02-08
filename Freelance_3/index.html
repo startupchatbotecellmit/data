@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Startup List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e6f3ff;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .startup-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .startup-button {
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .startup-button:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .startup-button.active {
+            background-color: #007bff;
+            color: white;
+        }
+        
+        .description-box {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            min-height: 60px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .description-box.visible {
+            opacity: 1;
+        }
+
+        .no-description {
+            font-style: italic;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Incubated Startups</h1>
+        <div class="description-box" id="descriptionBox">Click a startup to see its description</div>
+        <div class="startup-list" id="startupList"></div>
+    </div>
+
+    <script>
+        const startups = [
+            { title: "Aion Health Solutions - 41", description: "Aion Health Solutions, based in Manipal, India, develops innovative medical devices. Our products include an ENT endoscope camera and a cardiac stress test chest strap, enhancing clinical efficiency and patient care." },
+            { title: "ChurnOpp - 42", description: "ChurnOpp, inspired by Nikhilesh's digital marketing experience, leverages AI to predict customer churn, automate engagement, and enhance loyalty, empowering businesses to reduce churn, improve satisfaction, and drive growth." },
+            { title: "Differ - 43", description: "A Creative Solutions agency offering web development and monetization services. It delivers tailored solutions such as market research, CMS integration, logistics, and digital infrastructure management to drive exceptional growth." },
+            { title: "GOPERCH - 44", description: "GOPERCH is an app that simplifies life by letting users reserve parking spots, game sessions, or restaurant tables in advance. Say goodbye to long waits and enjoy a smoother, stress-free experience. With GOPERCH, life feels more organized and efficient." },
+            { title: "Instrumus - 45", description: "Instrumus is an aggregator marketplace for scientific services. They focus on efficiently connecting scientists and business with various services like instrumentation , Rapid prototyping , food testing and material analysis." },
+            { title: "Navmarg - 46", description: "Working in the WASH Sector, the flagship product, MARU (Magnetic Arsenic Removal Unit), removes arsenic from water without electricity or chemicals, ensuring clean water access globally." },
+            { title: "Project Mind Matters - 47", description: "Student-led initiative reducing mental health stigma, recognized by MSME and NITI Aayog, benefiting 3,500+, including a mental health program for the visually impaired." },
+            { title: "Project Ecosanitation - 48", description: "Information not available" },
+            { title: "Red Mountain Healthcare Pvt Ltd - 49", description: "Information not available" },
+            { title: "Avista E-Learning - 50", description: "Blended training with expert mentorship to bridge the academic-industry gap" },
+            { title: "Maiyas Healthcare - 51", description: "Laser Shoe Box: Targeted foot therapy for diabetic neuropathy relief" },
+            { title: "Malpe Meen - 52", description: "Tech-driven sustainable supply chain for the fishing industry" },
+            { title: "eSamudaay - 53", description: "Empowering Udupi's small businesses through digital connectivity" },
+            { title: "PharmIT - 54", description: "Connecting and optimizing the pharma supply chain." },
+            { title: "Zupaloop - 55", description: "AI-powered content analysis for smarter collaboration" },
+            { title: "Senztech - 56", description: "Innovative SSH research, advancing technology" },
+            { title: "Biobreath Health Solutions - 57", description: "Pioneering innovative and accessible healthcare" },
+            { title: "Drava Life Sciences - 58", description: "Information not available" },
+            { title: "QUIKYGO - 59", description: "Information not available" },
+            { title: "Openzo - 60", description: "Information not available" },
+            { title: "Flying Electronics - 61", description: "Your go-to store for FPV drones and accessories" },
+            { title: "NeuraSim - 62", description: "Pitch Tank 25 Winner" },
+            { title: "Rosette Smart Life Pvt. Ltd - 63", description: "Lead the global movement towards healthier lifestyle and environmental responsibility through the best product and service, seamlessly integrating well-being with sustainable living." },
+            { title: "Health is Wealth LLP - 64", description: "Information not available" },
+            { title: "Satavic Innovations Pvt. Ltd - 65", description: "Information not available" },
+            { title: "Sthani Club - 66", description: "Information not available" },
+            { title: "Gumpu Technologies Pvt. Ltd - 67", description: "Information not available" },
+            { title: "TeachSpoon(Medi Study Go) - 68", description: "Information not available" },
+            { title: "Chevulu Naturals - 69", description: "Information not available" },
+            { title: "Cognito - 70", description: "Information not available" }
+        ];
+
+        const startupList = document.getElementById("startupList");
+        const descriptionBox = document.getElementById("descriptionBox");
+        let activeButton = null;
+
+        // Show initial description box
+        descriptionBox.classList.add("visible");
+
+        startups.forEach(startup => {
+            const button = document.createElement("button");
+            button.className = "startup-button";
+            button.textContent = startup.title;
+            
+            button.addEventListener("click", () => {
+                if (activeButton) {
+                    activeButton.classList.remove("active");
+                }
+                button.classList.add("active");
+                activeButton = button;
+                
+                // Fade out
+                descriptionBox.classList.remove("visible");
+                
+                // Update content and fade in after a short delay
+                setTimeout(() => {
+                    descriptionBox.textContent = startup.description;
+                    if (startup.description === "Information not available") {
+                        descriptionBox.classList.add("no-description");
+                    } else {
+                        descriptionBox.classList.remove("no-description");
+                    }
+                    descriptionBox.classList.add("visible");
+                }, 300);
+            });
+            
+            startupList.appendChild(button);
+        });
+    </script>
+</body>
+</html>
