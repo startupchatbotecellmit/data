@@ -75,14 +75,43 @@
 </head>
 <body>
     <div class="container">
-        <h1>Freelance Registered</h1>
+        <h1>Incubated Startups</h1>
         <div class="description-box" id="descriptionBox">Click a startup to see its description</div>
         <div class="startup-list" id="startupList"></div>
     </div>
 
     <script>
         const startups = [
-            {title: 'Intern Loom - 71', description: 'Connecting Interns to Startups'}, {title: 'KICKSTER INDIA - 72', description: 'Buying and selling of sneakers and homegrown clothing brands'}, {title: 'Sleakwear - 73', description: 'Affordable, high-quality streetwear redefined'}, {title: 'StoriesByChildren - 74', description: 'Information not available'}, {title: 'RDL TECHNOLOGIES PVT LTD - 75', description: 'Smart factory transformation with AI-driven manufacturing solutions'}, {title: 'The Waiter Company - 76', description: 'Automated inventory replenishment for seamless restaurant operations'}, {title: 'Atlaaya Design - 77', description: 'Architecture & BIM consultancy with green building expertise'}, {title: 'baeru - 78', description: 'Baeru links waste management with ocean health & livelihoods'}, {title: 'Esprit Analytique - 79', description: 'Esprit Analytique drives impact through AI & data'}, {title: 'wodeyar art - 80', description: 'Wodeyar Art crafts precision CNC & laser designs'}, {title: 'lyflynehealth - 81', description: 'One-stop platform for hospital & post-care needs'}, {title: 'Corpacademia ITechnovations Pvt Ltd - 82', description: 'CorpAcademia iTechnovations delivers IT solutions and training in cloud, AI, and virtual labs, empowering organizations through hands-on technology programs.'}, {title: 'My Narrative - 83', description: 'Fashion-tech redefining style through stories'}, {title: 'Aarvath Mobitech Pvt Ltd - 84', description: 'Revolutionizing mobility with solar-powered vehicles'}, {title: 'BLUE-ARC - 85', description: 'Powering innovation with hardware, software, and networking'}, {title: 'Southpaw - 86', description: 'Information not available'}, {title: 'Accolade Tech Solutions Private Limited - 87', description: 'Innovative tech solutions in mobile, web, AI, and Smart TV apps'}, {title: 'DendrixSemi Microtech - 88', description: 'Tech Services: SoC, Embedded Dev, AI & Strategy Consulting'}, {title: 'The Dexes Company - 89', description: 'Revolutionizing age-appropriate sex education through engaging e-learning.'}, {title: 'Brown Collar - 90', description: 'Minimizing waste by repurposing workshop uniforms for first-year students'}, {title: 'Omnishakti.ai - 91', description: 'Information not available'}, {title: 'Modicare - 92', description: 'India's first Direct Selling Company, empowering dreams for 25 years'}, {title: 'GREENAMOR VENTRUES - 93', description: 'They make sustainable packaging material'}, {title: 'Deeproot Workforce Dynamics - 94', description: 'Information not available'}, {title: 'rosette - 95', description: 'Information not available'}
+            { title: "Aion Health Solutions - 41", description: "Aion Health Solutions, based in Manipal, India, develops innovative medical devices. Our products include an ENT endoscope camera and a cardiac stress test chest strap, enhancing clinical efficiency and patient care." },
+            { title: "ChurnOpp - 42", description: "ChurnOpp, inspired by Nikhilesh's digital marketing experience, leverages AI to predict customer churn, automate engagement, and enhance loyalty, empowering businesses to reduce churn, improve satisfaction, and drive growth." },
+            { title: "Differ - 43", description: "A Creative Solutions agency offering web development and monetization services. It delivers tailored solutions such as market research, CMS integration, logistics, and digital infrastructure management to drive exceptional growth." },
+            { title: "GOPERCH - 44", description: "GOPERCH is an app that simplifies life by letting users reserve parking spots, game sessions, or restaurant tables in advance. Say goodbye to long waits and enjoy a smoother, stress-free experience. With GOPERCH, life feels more organized and efficient." },
+            { title: "Instrumus - 45", description: "Instrumus is an aggregator marketplace for scientific services. They focus on efficiently connecting scientists and business with various services like instrumentation , Rapid prototyping , food testing and material analysis." },
+            { title: "Navmarg - 46", description: "Working in the WASH Sector, the flagship product, MARU (Magnetic Arsenic Removal Unit), removes arsenic from water without electricity or chemicals, ensuring clean water access globally." },
+            { title: "Project Mind Matters - 47", description: "Student-led initiative reducing mental health stigma, recognized by MSME and NITI Aayog, benefiting 3,500+, including a mental health program for the visually impaired." },
+            { title: "Project Ecosanitation - 48", description: "Information not available" },
+            { title: "Red Mountain Healthcare Pvt Ltd - 49", description: "Information not available" },
+            { title: "Avista E-Learning - 50", description: "Blended training with expert mentorship to bridge the academic-industry gap" },
+            { title: "Maiyas Healthcare - 51", description: "Laser Shoe Box: Targeted foot therapy for diabetic neuropathy relief" },
+            { title: "Malpe Meen - 52", description: "Tech-driven sustainable supply chain for the fishing industry" },
+            { title: "eSamudaay - 53", description: "Empowering Udupi's small businesses through digital connectivity" },
+            { title: "PharmIT - 54", description: "Connecting and optimizing the pharma supply chain." },
+            { title: "Zupaloop - 55", description: "AI-powered content analysis for smarter collaboration" },
+            { title: "Senztech - 56", description: "Innovative SSH research, advancing technology" },
+            { title: "Biobreath Health Solutions - 57", description: "Pioneering innovative and accessible healthcare" },
+            { title: "Drava Life Sciences - 58", description: "Information not available" },
+            { title: "QUIKYGO - 59", description: "Information not available" },
+            { title: "Openzo - 60", description: "Information not available" },
+            { title: "Flying Electronics - 61", description: "Your go-to store for FPV drones and accessories" },
+            { title: "NeuraSim - 62", description: "Pitch Tank 25 Winner" },
+            { title: "Rosette Smart Life Pvt. Ltd - 63", description: "Lead the global movement towards healthier lifestyle and environmental responsibility through the best product and service, seamlessly integrating well-being with sustainable living." },
+            { title: "Health is Wealth LLP - 64", description: "Information not available" },
+            { title: "Satavic Innovations Pvt. Ltd - 65", description: "Information not available" },
+            { title: "Sthani Club - 66", description: "Information not available" },
+            { title: "Gumpu Technologies Pvt. Ltd - 67", description: "Information not available" },
+            { title: "TeachSpoon(Medi Study Go) - 68", description: "Information not available" },
+            { title: "Chevulu Naturals - 69", description: "Information not available" },
+            { title: "Cognito - 70", description: "Information not available" }
         ];
 
         const startupList = document.getElementById("startupList");
